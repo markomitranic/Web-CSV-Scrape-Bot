@@ -31,3 +31,4 @@ As with the single execute, if not starting the job as root, you must check the 
  * [JacobWard PHP scrapeBot](http://www.jacobward.co.uk/web-scraping-with-php-curl-part-1/) - the architecture behind the bot itself
  * [AskUbuntu Q&A](http://askubuntu.com/questions/2368/how-do-i-set-up-a-cron-job/2371#2371) - settng up the Cron Job
  * [LinuxCommand](http://linuxcommand.org/wss0010.php) - writing shell scripts 101
+ * Thanks to @designbyheart for help with Cron Jobs
