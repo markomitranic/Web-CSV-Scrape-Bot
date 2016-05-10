@@ -1,14 +1,11 @@
 <?php
 
-$url = "http://www.imvu.com/";
-$playersArguments = [
-    '<span id="online_count"><b><span class=\'notranslate\'>',
-    '</span>'
+$url = "https://www.instagram.com/imvu/";
+$scrapeArgs = [
+    'window._sharedData = ',
+    ';</script>'
 ];
-$countriesArguments = [
-    '<span id="country_count">in <b><span class=\'notranslate\'>',
-    '</span>'
-];
+
 date_default_timezone_set("Europe/Belgrade"); 
 
 // Get website
@@ -16,26 +13,29 @@ $scraped_website = curl($url);
 if (!$scraped_website) { die('Connection Error'); }
 
 // Scrape only the needed values
-$players = scrape_between($scraped_website, $playersArguments[0], $playersArguments[1]);
-$countries = scrape_between($scraped_website, $countriesArguments[0], $countriesArguments[1]);
+$object = scrape_between($scraped_website, $scrapeArgs[0], $scrapeArgs[1]);
+$object = json_decode($object)->entry_data->ProfilePage;
+
+// Gather the needed data
+$followers = $object[0]->user->followed_by->count;
+$lastPost = $object[0]->user->media->nodes[0]->code;
+$lastPostLikes = $object[0]->user->media->nodes[0]->likes->count;
+
 
 // Parse values as integers and verify that they are integers
-$players = intval(str_replace( ',', '', $players ));
-$countries = intval($countries);
-
-if (!(is_numeric($players) && is_numeric($countries))) {
+if (!(is_numeric($followers) && is_numeric($lastPostLikes))) {
     die('The scraped data is not numeric. Stopping everything.');
 }
 
 // Create CSV array and prepare it.
-$data = [$players, $countries, time()];
+$data = [$followers, $lastPost, $lastPostLikes, time()];
 
 // Add record to file.
 saveValue($data);
 
 // Print data to screen
-echo "There is $data[0] players
-From $data[1] countries
+echo "There is $data[0] followers
+Last Post is $data[1] with $data[2] likes
 Clock: ".date("H:i:s", time())."
 ";
 

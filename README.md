@@ -19,7 +19,7 @@ Additionally, you must check the privileges on our files - `chmod 755 index.php`
 Cron Jobs are a really easy way to handle timed or daemon tasks like this on server. We can set up a Cron, give it our shell script path as a parameter, and set up the timer.
 ```sh
 EDITOR="nano" crontab -e # Open the cronTab in nano editor
-*/10 * * * * root /usr/bin/somedirectory/shell # Add the values
+*/10 * * * * /usr/bin/somedirectory/shell # Add the values
 ```
 
 This Job here will start every 10 minutes. You can read more about setting up a Cron Job from here: [AskUbuntu Q&A](http://askubuntu.com/questions/2368/how-do-i-set-up-a-cron-job/2371#2371)
