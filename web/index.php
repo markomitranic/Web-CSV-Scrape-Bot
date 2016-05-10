@@ -61,10 +61,12 @@ exit();
     }
 
     function saveValue($data) {
-    	if (!file_exists('file.csv')) {
+        $cwd =  dirname(__FILE__);
+        echo $cwd;
+    	if (!file_exists($cwd.'/file.csv')) {
     		die('File NOT found! Stopping scrape.');
     	}
-		$fp = fopen('file.csv', 'a');
+		$fp = fopen($cwd.'/file.csv', 'a');
 		fputcsv($fp, $data);
 		fclose($fp);
     }
