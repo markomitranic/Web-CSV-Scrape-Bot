@@ -1,6 +1,7 @@
 #!/bin/bash
 # My first script
 
+SCRIPTPATH=$(dirname "$0")
 echo "#####################################"
-php -f index.php
+php -f $SCRIPTPATH"/index.php"
 echo "#####################################"
