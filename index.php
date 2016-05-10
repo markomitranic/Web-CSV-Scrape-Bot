@@ -1,9 +1,5 @@
 <?php
 
-echo "
-
-#####################################";
-
 $url = "http://www.imvu.com/";
 $playersArguments = [
 	'<span id="online_count"><b><span class=\'notranslate\'>',
@@ -38,12 +34,9 @@ $data = [$players, $countries, time()];
 saveValue($data);
 
 // Print data to screen
-echo "
-There is $data[0] players
+echo "There is $data[0] players
 From $data[1] countries
 Clock: ".date("H:i:s", time())."
-#####################################
-
 ";
 
 
