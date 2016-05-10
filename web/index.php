@@ -39,7 +39,7 @@ From $data[1] countries
 Clock: ".date("H:i:s", time())."
 ";
 
-
+exit();
 
     // Defining the basic cURL function
     function curl($url) {
