@@ -20,13 +20,15 @@ $likes = scrape_between($scraped_website, $likesArguments[0], $likesArguments[1]
 $lastPost = scrape_between($scraped_website, $lastPostArguments[0], $lastPostArguments[1]);
 
 
+var_dump($scraped_website);
 
-
-
+var_dump($likes);
 
 // Parse values as integers and verify that they are integers
 $likes = intval(str_replace( '.', '', $likes ));
 $lastPost = intval($lastPost);
+
+var_dump($likes);
 
 if (!(is_numeric($likes) && is_numeric($lastPost))) {
     die('The scraped data is not numeric. Stopping everything.');
